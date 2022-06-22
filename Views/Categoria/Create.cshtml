@@ -1,0 +1,14 @@
+@using VYSA.Models
+@{
+    Layout = "/Views/Layout.cshtml";
+    ViewBag.Title = "Nova Categoria";
+}
+
+<form action="/Categoria/Create" method="POST">
+    <div>
+        <label>Nome</label>
+        <input type="text" class="form-control" name="Nome"/>
+    </div>
+
+    <button class="btn btn-secondary" style="margin-top: 20px">Salvar</button>
+</form>

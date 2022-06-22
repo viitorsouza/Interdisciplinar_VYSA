@@ -1,0 +1,60 @@
+@using VYSA.Models
+@{
+    Layout = "/Views/Layout.cshtml";
+    ViewBag.Title = "Novo Fornecedor";
+}
+
+<form action="/Fornecedor/Create" method="POST">
+
+    <div class="row">    
+        <div class="col-7">
+            <label>Nome</label>
+            <input type="text" class="form-control" name="Nome"/>
+        </div>
+
+        <div class="col-5">
+            <label>Empresa</label>
+            <input type="text" class="form-control" name="Empresa"/>
+        </div>
+    </div>
+
+    <div>
+        <label>Endereço</label>
+        <input type="text" class="form-control" name="Endereco"/>
+    </div>
+
+    <div class="row">    
+        <div class="col-6">
+            <label>CPF</label>
+                <input type="text" MAXLENGTH="14" onkeypress="$(this).mask('000.000.000-00');" 
+                    class="form-control" name="CPF" \
+			        pattern="\d{3}\.?\d{3}\.?\d{3}-?\d{2}" \
+			        title="Digite um CPF no formato: xxx.xxx.xxx-xx">
+        </div>
+
+        <div class="col-6">
+            <label>Status</label>
+            <select name="Status" class="form-control">
+                {
+                    <option value="1">Ativo</option>
+                    <option value="0">Inativo</option>
+                }
+            </select>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-6">
+            <label>E-mail</label>
+            <input type="email" class="form-control" name="endEmail"/>
+        </div>    
+
+        <div class="col-6">
+            <label>Telefone</label>
+            <input type="text" class="form-control" onkeypress="$(this).mask('(00) 00000-0000')" name="Telefone"/>
+        </div>
+    </div>
+
+
+    <button class="btn btn-secondary" style="margin-top: 20px">Salvar</button>
+</form>

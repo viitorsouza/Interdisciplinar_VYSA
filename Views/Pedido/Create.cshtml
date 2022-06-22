@@ -1,0 +1,135 @@
+@using VYSA.Models
+@{
+    Layout = "/Views/Layout.cshtml";
+    ViewBag.Title = "Novo Pedido";
+}
+
+<form action="/Pedido/Create" method="POST">
+@{var i = 0;
+  var p = "valor";}
+
+
+<div class="container">
+  <div class="row justify-content-end">
+    <div class="col-4">
+      @foreach(var funcionario in ViewBag.Funcionarios)
+      {
+        @if(@Context.Session.GetInt32("Id") == funcionario.Id)
+        {
+          <input type="hidden" name="IdFuncionario" class="form-control" value="@funcionario.Id" >
+        }        
+      }      
+    </div>
+    <div class="col-4">
+      <label>Cliente</label>
+      <select name="IdCliente" class="form-control">
+        @foreach(var cliente in ViewBag.Clientes)
+        {
+          {
+            <option value="@cliente.Id">@cliente.Nome</option>         
+          }            
+        }
+      </select>  
+    </div>
+
+    <div class="col-4">
+      <label>Tipo do Pedido</label>
+      <select name="Tipo" class="form-control">
+        {
+          <option value="0">Balcão</option>
+          <option value="1">Delivery</option>         
+        }
+      </select>
+    </div>
+  </div>
+</div>
+
+
+
+<div class="container" style="padding:10px">
+  <div class="row align-items-start">
+    <div class="col">
+      <b>Produto</b>
+    </div>
+    <div class="col">
+      <b>Preço</b>
+    </div>
+    <div class="col">
+      <b>Quantidade</b>
+    </div>
+  </div>
+</div>
+
+  @foreach(var produto in ViewBag.Produtos)
+  {
+    i = i + 1;
+    p = "valor" + i;
+
+    <div class="container">
+      <div class="row justify-content-end">      
+        <div class="col-4" style="padding:10px">        
+          <div name="IdProduto" class="form-control">            
+
+                    @foreach(var categoria in ViewBag.Categorias)
+                    {
+                        @if(@produto.IdCategoria == @categoria.IdCategoria)
+                        {
+                            <p value="@produto.IdProduto">@produto.Nome - @categoria.Nome</p>
+                        }
+                    }
+          </div>                   
+        </div>
+
+        <div class="col-4" style="padding:10px">
+            <input id="@p" class="form-control" readonly="readonly" value="@produto.Preco"/>
+        </div>   
+
+        <div class="col-4" style="padding:10px">
+            <input type="int" id="@i" class="form-control"/> 
+        </div>     
+      </div>
+    </div>
+  }
+  <input type="hidden" id="qtdTotal" value="@i">
+
+  <div class="container">
+    <div class="row justify-content-end">
+      <div class="col-4">
+        <label>Total</label>
+          <input type="decimal" name="valor" class="form-control">     
+      </div>
+    </div>
+  </div>  
+    
+    <button class="btn btn-secondary" onclick="totalCompra()" style="margin-top: 20px">Salvar</button>
+
+</form>
+
+
+
+<script>
+
+  function totalCompra(){
+
+    var valorTotal = 0;
+    var qtdTotal = document.getElementById("qtdTotal").value;
+
+    for(var i = 1; i <= qtdTotal; i++)
+    {
+      var qtd = document.getElementById(i);
+      var valor = document.getElementById('valor'+i);
+
+      var valor2 = valor.value.replace(/[^0-9]/g,'.');
+      valor2 = parseFloat( valor2 );
+
+      valorTotal = valorTotal + (qtd.value * valor2);
+    }
+
+    console.log(qtd.value);
+    console.log(valor.value);
+    console.log(valorTotal);
+    console.log(valor2);
+    console.log(qtdTotal);
+  }
+
+</script>

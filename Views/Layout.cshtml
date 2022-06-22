@@ -1,0 +1,103 @@
+﻿<!DOCTYPE html>
+<html lang="pt-br">
+
+    <head>
+
+        <title>@ViewBag.Title</title>
+
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
+        
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+        <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.15/jquery.mask.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+        
+        <nav class="navbar navbar-expand-lg navbar-light " class="navbar fixed-top" style="background-color: #D3D3D3;">
+            <div class="container">
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+
+                   
+                    
+                    <ul class="navbar-nav mr-auto">
+                        
+                        <li class="nav-item">
+                            <div class="nav-link"><font face="Arial" size="4">Olá, @Context.Session.GetString("Nome")</font><span class="sr-only">(current)</span></div>
+                        </li>
+                        
+                        <li class="nav-item">
+                            <a class="nav-link" href="/Home/Index" ><font face="Arial" size="4"> Home </font><span class="sr-only">(current)</span></a>
+                        </li>                        
+                        <li class="nav-item">
+                            <a class="nav-link" href="/Pedido/Index"><font face="Arial" size="4">Pedidos</font><span class="sr-only">(current)</span></a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="/Funcionario/Index"><font face="Arial" size="4">Funcionários</font> <span class="sr-only">(current)</span></a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="/Cliente/Index"><font face="Arial" size="4">Clientes</font> <span class="sr-only">(current)</span></a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="/Fornecedor/Index"><font face="Arial" size="4">Fornecedores</font> <span class="sr-only">(current)</span></a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="/Categoria/Index"><font face="Arial" size="4">Categorias</font> <span class="sr-only">(current)</span></a>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <font face="Arial" size="4">Produtos</font>
+                            </a>
+                            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                <font face="Arial" size="4">
+                                    <a class="dropdown-item" href="/Produto/Index">Todos os Produtos</a>
+                                    <div class="dropdown-divider"></div>
+                                    @try
+                                    {
+                                        @foreach(var categoria in ViewBag.Categorias)
+                                        {
+                                            <a class="dropdown-item" href="/Produto/Filter/@categoria.IdCategoria">@categoria.Nome</a> 
+                                        }
+                                    }
+                                    
+                                    catch(Exception ex) 
+                                    {
+                                        Console.WriteLine("ex.Message");              
+                                    }                           
+                                </font>
+                            </div>
+                        </li>                 
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <font face="Arial" size="4">Cadastrar</font>
+                            </a>
+                            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                <font face="Arial" size="4">
+                                <a class="dropdown-item" href="/Funcionario/Create">Funcionário</a>
+                                <a class="dropdown-item" href="/Cliente/Create">Cliente</a>
+                                <a class="dropdown-item" href="/Fornecedor/Create">Fornecedor</a>
+                                <div class="dropdown-divider"></div>
+                                <a class="dropdown-item" href="/Produto/Create">Produto</a>
+                                <a class="dropdown-item" href="/Categoria/Create">Categoria</a>
+                                </font>
+                            </div>
+                        </li>            
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </head>
+
+    <body>
+        <div class="container">
+            @RenderBody()
+        </div>
+    </body>
+
+</html>

@@ -1,0 +1,79 @@
+@using VYSA.Models
+@model Produto
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+
+@{
+    Layout = "/Views/Layout.cshtml";
+    ViewBag.Title = "Atualiza Produto";
+}
+
+<div>
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="/Produto/Index">Produtos</a></li>
+        <li class="breadcrumb-item active" aria-current="page">Atualiza Produto</li>
+    </ol>
+</div>
+
+<form action="/Produto/Update/@Model.IdProduto" method="POST">
+    <div>
+        <label>Nome</label>
+        <input type="text" class="form-control" name="Nome" value="@Model.Nome"/>
+    </div>
+
+    <div>
+        <label>Descrição</label>
+        <textarea name="Descricao" class="form-control">@Model.Descricao</textarea>
+    </div>
+
+    <div class="row">
+        <div class="col-3">
+            <label>Preço</label>
+            <input class="form-control" onkeypress="$(this).mask('###.##0,00', {reverse: true});" asp-for="Preco"/>
+        </div>    
+
+        <div class="col-3">
+            <label>Quantidade</label>
+            <input class="form-control" asp-for="Estoque"/>
+        </div>
+
+        <div class="col-3">
+            <label>Código de Barras</label>
+            <input class="form-control" asp-for="Cod_barras"/>
+        </div>
+
+        <div class="col-3">
+            <label>Status</label>
+            <select asp-for="Status" class="form-control">
+                {
+                    <option value="1">Ativo</option>
+                    <option value="0">Inativo</option>
+                }
+            </select>
+        </div>
+    </div>
+
+    <div class="row">
+
+        <div class="col-6">
+            <label>Categoria</label>
+            <select asp-for="IdCategoria" class="form-control" >
+                @foreach(var categoria in ViewBag.Categorias)
+                {
+                <option value="@categoria.IdCategoria">@categoria.Nome</option>
+                }
+            </select>
+        </div>
+
+        <div class="col-6">
+            <label>Fornecedor</label>
+            <select asp-for="IdFornecedor" class="form-control" >
+                @foreach(var fornecedor in ViewBag.Fornecedores)
+                {
+                <option value="@fornecedor.Id">@fornecedor.Nome - @fornecedor.Empresa</option>
+                }
+            </select>
+        </div>
+    </div>    
+
+    <button class="btn btn-primary" style="margin-top: 20px">Salvar</button>
+</form>

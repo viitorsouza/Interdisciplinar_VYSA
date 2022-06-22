@@ -1,0 +1,77 @@
+@using VYSA.Models
+@{
+    Layout = "/Views/Layout.cshtml";
+    ViewBag.Title = "Home";
+}
+
+<div class="row justify-content-md-center">
+
+    <div class="col-6" class="col align-self-center">
+        <tr>
+            <h1><center>V.Y.S.A</center></h1>
+        </tr>        
+    </div>
+
+</div>
+
+<div class="row justify-content-between">
+
+    <div class="col-6">        
+
+        <div>
+            <th><font face="Arial" size="5"><center><b>Produtos com Estoque Baixo</b></center></font></th>
+        </div>
+
+        <table class="table table-hover">
+            <tr>
+                <th><font face="Arial" size="4">Produto</font></th>
+                <th><font face="Arial" size="4">Categoria</font></th>
+                <th><font face="Arial" size="4">Estoque</font></th>
+            </tr>
+            
+            @try
+            {
+                @foreach (Produto p in Model)
+                {
+                    <tr>
+                        <td>
+                            <font face="Arial" size="4">@p.Nome</font>
+                        </td>
+                        <td>
+                            <font face="Arial" size="4">
+                                @foreach(var categoria in ViewBag.Categorias)
+                                if(p.IdCategoria == categoria.IdCategoria)
+                                    {
+                                    <option value="@categoria.IdCategoria">@categoria.Nome</option>
+                                    }
+                            </font>
+                        </td>
+                        <td>
+                            <font face="Arial" size="4" color="#FF0000">@p.Estoque</font>
+                        </td>
+                        <td>
+                            <a href="/Produto/Update/@p.IdProduto">Atualizar</a>      
+                        </td>
+
+                    </tr>
+                }
+            }
+            
+            catch(Exception ex) 
+            {
+                <tr>
+                    <td>Nenhum</td>
+                </tr>              
+            }
+        </table>
+    </div>
+
+    <div class="col-5">        
+
+        <div>
+            <th><font face="Arial" size="5"><center><b>Pedidos Recentes</b></center></font></th>
+        </div>
+
+    </div>
+
+</div>

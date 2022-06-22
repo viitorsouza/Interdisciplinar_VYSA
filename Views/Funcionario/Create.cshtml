@@ -1,0 +1,69 @@
+@using VYSA.Models
+@{
+    Layout = "/Views/Layout.cshtml";
+    ViewBag.Title = "Novo Funcionário";
+}
+
+<form action="/Funcionario/Create" method="POST">
+    <div>
+        <label>Nome</label>
+        <input type="text" class="form-control" name="Nome"/>
+    </div>
+
+    <div>
+        <label>Endereço</label>
+        <input type="text" class="form-control" name="Endereco"/>
+    </div>
+
+    <div class="row">    
+        <div class="col-4">
+            <label>CPF</label>
+            	<input type="text" MAXLENGTH="14" onkeypress="$(this).mask('000.000.000-00');" 
+                    class="form-control" name="CPF" \
+			        pattern="\d{3}\.?\d{3}\.?\d{3}-?\d{2}" \
+			        title="Digite um CPF no formato: xxx.xxx.xxx-xx">
+        </div>
+
+        <div class="col-4">
+            <label>Salário</label>
+            <input type="decimal" onkeypress="$(this).mask('###.##0,00', {reverse: true});" class="form-control" name="Salario"/>
+        </div>
+
+        <div class="col-4">
+            <label>Status</label>
+            <select name="Status" class="form-control">
+                {
+                    <option value="1">Ativo</option>
+                    <option value="0">Inativo</option>
+                }
+            </select>
+        </div>
+    </div>
+
+    <div class="row">    
+        <div class="col-6">
+            <label>Login</label>
+            <input type="email" class="form-control" name="Login"/>
+        </div>
+
+        <div class="col-6">
+            <label>Senha</label>
+            <input type="password" minlength="6" required class="form-control" name="Senha"/>
+        </div>
+    </div>    
+
+    <div class="row">
+        <div class="col-6">
+            <label>E-mail</label>
+            <input type="email" class="form-control" name="endEmail"/>
+        </div>    
+
+        <div class="col-6">
+            <label>Telefone</label>
+            <input type="text" class="form-control" onkeypress="$(this).mask('(00) 00000-0000')" name="Telefone"/>
+        </div>
+    </div>
+
+    <button class="btn btn-secondary" style="margin-top: 20px">Salvar</button>
+
+</form>

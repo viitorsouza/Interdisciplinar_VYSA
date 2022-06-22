@@ -1,0 +1,24 @@
+@using VYSA.Models
+@model Categoria
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+
+@{
+    Layout = "/Views/Layout.cshtml";
+    ViewBag.Title = "Atualiza Categoria";
+}
+
+<div>
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="/Categoria/Index">Categoria</a></li>
+        <li class="breadcrumb-item active" aria-current="page">Atualiza Categoria</li>
+    </ol>
+</div>
+
+<form action="/Categoria/Update/@Model.IdCategoria" method="POST">
+    <div>
+        <label>Nome</label>
+        <input type="text" class="form-control" name="Nome" value="@Model.Nome"/>
+    </div>
+   
+    <button class="btn btn-primary" style="margin-top: 20px">Salvar</button>
+</form>

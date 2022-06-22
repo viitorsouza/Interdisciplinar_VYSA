@@ -1,0 +1,74 @@
+@using VYSA.Models
+@{
+    Layout = "/Views/Layout.cshtml";
+    ViewBag.Title = "Novo Produto";
+}
+
+<form action="/Produto/Create" method="POST">
+    
+    <div>
+        <label>Nome</label>
+        <input type="text" class="form-control" name="Nome"/>
+    </div>
+
+    <div>
+        <label>Descrição</label>
+        <textarea name="Descricao" class="form-control"></textarea>
+    </div>
+
+    <div class="row">    
+
+        <div class="col-3">
+            <label>Preço</label>
+            <input type="decimal" onkeypress="$(this).mask('###.##0,00', {reverse: true});" class="form-control" name="Preco"/>
+        </div>
+        
+        <div class="col-3">
+            <label>Quantidade</label>
+            <input type="int" class="form-control" name="Estoque"/>
+        </div>
+
+        <div class="col-3">
+            <label>Código de Barras</label>
+            <input type="decimal" class="form-control" name="Cod_barras"/>
+        </div>
+
+        <div class="col-3">
+            <label>Status</label>
+            <select name="Status" class="form-control">
+                {
+                    <option value="1">Ativo</option>
+                    <option value="0">Inativo</option>
+                }
+            </select>
+        </div>
+
+    </div>   
+  
+    <div class="row">
+
+        <div class="col-6">
+            <label>Categoria</label>
+            <select name="IdCategoria" class="form-control">
+                @foreach(var categoria in ViewBag.Categorias)
+                {
+                <option value="@categoria.IdCategoria">@categoria.Nome</option>
+                }
+            </select>
+        </div>
+
+        <div class="col-6">
+            <label>Fornecedor</label>
+            <select name="IdFornecedor" class="form-control">
+                @foreach(var fornecedor in ViewBag.Fornecedores)
+                {
+                <option value="@fornecedor.Id">@fornecedor.Nome - @fornecedor.Empresa</option>
+                }
+            </select>
+        </div>
+
+    </div>
+
+
+    <button class="btn btn-secondary" style="margin-top: 20px">Salvar</button>
+</form>

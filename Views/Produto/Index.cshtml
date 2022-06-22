@@ -1,0 +1,54 @@
+@using VYSA.Models
+@{
+    Layout = "/Views/Layout.cshtml";
+    ViewBag.Title = "Produtos";
+}
+
+<div class="row">
+    <div class="col-10">
+        <table id="tabela" class="table table-hover">
+            <tr>
+                <th>Id</th>
+                <th>Produto</th>
+                <th>Preço</th>
+                <th>Categoria</th>
+                <th>Estoque</th>
+                <th>&nbsp;</th>
+            </tr>
+            @try
+            {
+                @foreach (Produto p in Model)
+                {
+                    <tr>
+                        <td>@p.IdProduto</td>
+                        <td>@p.Nome</td>
+                        <td>@p.Preco.ToString("c")</td>
+                        <td>
+                            @foreach(var categoria in ViewBag.Categorias)
+                            if(p.IdCategoria == categoria.IdCategoria)
+                                {
+                                <option value="@categoria.IdCategoria">@categoria.Nome</option>
+                                }
+                        </td>
+                        <td>@p.Estoque</td>
+                        <td>
+                            <a href="/Produto/Delete/@p.IdProduto">Apagar</a>      
+                        </td>
+                        <td>
+                            <a href="/Produto/Update/@p.IdProduto">Editar</a>
+                        </td>
+                    </tr>
+                }
+            }
+            
+            catch(Exception ex) 
+            {
+                Console.WriteLine("ex.Message");              
+            }
+
+        </table>
+
+        <a href="/Produto/Create" class="btn btn-secondary" style="margin-top: 20px">Adicionar</a>
+
+    </div>
+</div>

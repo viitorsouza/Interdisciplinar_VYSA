@@ -1,0 +1,79 @@
+@using VYSA.Models
+@model Funcionario
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+
+@{
+    Layout = "/Views/Layout.cshtml";
+    ViewBag.Title = "Atualiza Funcionario";
+}
+
+<div>
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="/Funcionario/Index">Funcionário</a></li>
+        <li class="breadcrumb-item active" aria-current="page">Atualiza Funcionário</li>
+    </ol>
+</div>
+
+<form action="/Funcionario/Update/@Model.Id" method="POST">
+    
+    <div>
+        <label>Nome</label>
+        <input type="text" class="form-control" asp-for="Nome"/>
+    </div>
+
+    <div>
+        <label>Endereço</label>
+        <input type="text" class="form-control" asp-for="Endereco"/>
+    </div>
+
+    <div class="row">    
+        <div class="col-4">
+            <label>CPF</label>
+                <input type="text" MAXLENGTH=14 onkeypress="$(this).mask('000.000.000-00');"
+                    class="form-control" asp-for="CPF" \
+			        pattern="\d{3}\.?\d{3}\.?\d{3}-?\d{2}" \
+			        title="Digite um CPF no formato: xxx.xxx.xxx-xx">
+        </div>
+
+        <div class="col-4">
+            <label>Salário</label>
+            <input class="form-control" onkeypress="$(this).mask('###.##0,00', {reverse: true});" asp-for="Salario"/>
+        </div>
+
+        <div class="col-4">
+            <label>Status</label>
+            <select asp-for="Status" class="form-control">
+                {
+                    <option value="1">Ativo</option>
+                    <option value="0">Inativo</option>
+                }
+            </select>
+        </div>
+    </div>
+
+    <div class="row">    
+        <div class="col-6">
+            <label>Login</label>
+            <input type="email" class="form-control" asp-for="Login"/>
+        </div>
+
+        <div class="col-6">
+            <label>Senha</label>
+            <input type="password" minlength="6" required class="form-control" name="Senha" value="@Model.Senha"/>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-6">
+            <label>E-mail</label>
+            <input type="email" class="form-control" asp-for="endEmail"/>
+        </div>    
+
+        <div class="col-6">
+            <label>Telefone</label>
+            <input type="text" class="form-control" onkeypress="$(this).mask('(00) 00000-0000')" asp-for="Telefone"/>
+        </div>
+    </div>    
+    
+    <button class="btn btn-primary" style="margin-top: 20px">Salvar</button>
+</form>

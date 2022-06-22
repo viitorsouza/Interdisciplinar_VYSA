@@ -1,0 +1,41 @@
+@using VYSA.Models
+@{
+    Layout = "/Views/Layout.cshtml";
+    ViewBag.Title = "Categorias";
+}
+
+<div class="row">
+    <div class="col-10">
+        <table class="table table-hover">
+            <tr>
+                <th>Id</th>
+                <th>Categoria</th>
+            </tr>
+            @try
+            {
+                @foreach (Categoria c in Model)
+                {
+                    <tr>
+                        <td>@c.IdCategoria</td>
+                        <td>@c.Nome</td>
+                        <td>
+                            <a href="/Categoria/Delete/@c.IdCategoria">Apagar</a>      
+                        </td>
+                        <td>
+                            <a href="/Categoria/Update/@c.IdCategoria">Editar</a>
+                        </td>
+                    </tr>
+                }
+            }
+
+            catch(Exception ex) 
+            {
+                Console.WriteLine("ex.Message");              
+            }
+
+        </table>
+
+        <a href="/Categoria/Create" class="btn btn-secondary" style="margin-top: 20px">Adicionar</a>
+
+    </div>
+</div>

@@ -1,0 +1,50 @@
+@using VYSA.Models
+@{
+    Layout = "/Views/Layout.cshtml";
+    ViewBag.Title = "Fornecedores";
+}
+
+<table class = "table table-hover">
+    <tr>
+        <td>Id</td>
+        <td>Nome</td>
+        <td>Empresa</td>
+        <td>Status</td>
+        <td>Telefone</td>
+    </tr>
+
+    @try
+    {
+        @foreach(Fornecedor f in Model)
+        {
+            <tr>                
+                <td>@f.Id</td>
+                <td>@f.Nome</td>
+                <td>@f.Empresa</td>
+                <td>
+                    @if(f.Status == 0)
+                        {
+                        <option value="@f.Status">Inativo</option>
+                        }
+                    @if(f.Status == 1)
+                        {
+                        <option value="@f.Status">Ativo</option>
+                        }
+                </td>
+                <td>@f.Telefone</td>          
+                <td>
+                    <a href="/Fornecedor/Delete/@f.Id">Apagar</a>      
+                </td>
+                <td>
+                    <a href="/Fornecedor/Update/@f.Id">Editar</a>
+                </td>
+             </tr>
+        }
+    }
+
+    catch(Exception ex) 
+    {
+        Console.WriteLine("ex.Message");              
+    }
+        
+</table>
