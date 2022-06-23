@@ -17,7 +17,9 @@ namespace VYSA.Controllers
 
         public ActionResult Login()
         {
+            HttpContext.Session.Clear();
             return View();
+
         }
 
         [HttpPost]

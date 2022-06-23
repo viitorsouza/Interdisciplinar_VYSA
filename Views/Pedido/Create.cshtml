@@ -34,7 +34,7 @@
 
     <div class="col-4">
       <label>Tipo do Pedido</label>
-      <select name="Tipo" class="form-control">
+      <select type="int" name="Tipo" class="form-control">
         {
           <option value="0">Balcão</option>
           <option value="1">Delivery</option>         
@@ -85,7 +85,7 @@
         </div>   
 
         <div class="col-4" style="padding:10px">
-            <input type="int" id="@i" class="form-control"/> 
+            <input type="int" id="@i" name="qtd" class="form-control"/> 
         </div>     
       </div>
     </div>
@@ -96,7 +96,7 @@
     <div class="row justify-content-end">
       <div class="col-4">
         <label>Total</label>
-          <input type="decimal" name="valor" class="form-control">     
+          <input type="decimal" name="valor" class="form-control" id="total">     
       </div>
     </div>
   </div>  
@@ -124,10 +124,17 @@
 
       valorTotal = valorTotal + (qtd.value * valor2);
     }
+    
+    valorTotal = valorTotal.toString();
+    var valorTotal2 = valorTotal.replace(/[^0-9]/g,',');
+
+
+    document.getElementById("total").value = valorTotal2;
 
     console.log(qtd.value);
     console.log(valor.value);
     console.log(valorTotal);
+
     console.log(valor2);
     console.log(qtdTotal);
   }

@@ -54,8 +54,9 @@ namespace VYSA.Repositories
                             IdPedido = (int)reader["IdPedido"],
                             Data = (DateTime)reader["Data"],
                             Valor = (decimal)reader["Valor"],
-                            IdCliente = (int)reader["IdCliente"],
-                            IdFuncionario = (int)reader["IdFuncionario"]
+                            Tipo = (int)reader["Tipo"],
+                            IdCliente = (int)reader["cliente_id"],
+                            IdFuncionario = (int)reader["funcionario_id"]
                         }
                     );
                 }

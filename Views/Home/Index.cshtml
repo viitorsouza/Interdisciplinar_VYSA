@@ -71,6 +71,51 @@
         <div>
             <th><font face="Arial" size="5"><center><b>Pedidos Recentes</b></center></font></th>
         </div>
+        <table class="table table-hover">
+
+            <tr>
+                <th><font face="Arial" size="4">Data</font></th>
+                <th><font face="Arial" size="4">Valor</font></th>
+                <th><font face="Arial" size="4">Tipo</font></th>
+            </tr>
+
+            @try
+            {
+                @foreach (var ped in ViewBag.Pedidos)
+                {
+                    <tr>
+                        <td>
+                            <font face="Arial">@ped.Data</font>
+                        </td>
+                        <td>
+                            <font face="Arial">R$@ped.Valor</font>
+                        </td>
+                        <td>
+                            <font face="Arial">
+                                @if(ped.Tipo == 0)
+                                    {
+                                    <option value="@ped.Tipo">Balcão</option>
+                                    }
+                                @if(ped.Tipo == 1)
+                                    {
+                                    <option value="@ped.Tipo">Delivery</option>
+                                    }
+                            </font>
+                        </td>
+                        <td>
+                            <a href="#">Detalhes</a>
+                        </td>
+                    </tr>
+                }
+            }
+            
+            catch(Exception ex) 
+            {
+                <tr>
+                    <td>Nenhum</td>
+                </tr>              
+            }
+        </table>
 
     </div>
 

@@ -5,23 +5,62 @@
 }
 
 <table class = "table table-hover">
-    @try
-    {  
-        @foreach(Pedido ped in Model)
-        {
-        <tr>
-            <td>@ped.Data</td>
-            <td>R$@ped.Valor</td>
-            <td>@ped.IdFuncionario</td>
-        </tr>
-        }  
-    }
-    
-    catch(Exception ex) 
-    {
-        Console.WriteLine(ex.Message);              
-    }
 
-    <a href="/Pedido/Create" class="btn btn-secondary" style="margin-top: 20px">Novo Pedido</a>
+    <thead>
+        <tr>
+            <th>Id</th>
+            <th>Data</th>
+            <th>Valor</th>
+            <th>Funcionário</th>
+            <th>Cliente</th>
+            <th>Tipo</th>
+        </tr>
+    </thead>    
+
+    <tbody id="myTable">
+        @try
+        {  
+            @foreach(Pedido ped in Model)
+            {
+            <tr>
+                <td>@ped.IdPedido</td>
+                <td>@ped.Data</td>
+                <td>R$@ped.Valor</td>
+                <td>                
+                    @foreach(var funcionario in ViewBag.Funcionarios)
+                        if(ped.IdFuncionario == funcionario.Id)
+                        {
+                        <option value="@ped.IdFuncionario">@funcionario.Nome</option>
+                        }</td>
+                <td>
+                    @foreach(var cliente in ViewBag.Clientes)
+                        if(ped.IdCliente == cliente.Id)
+                        {
+                        <option value="@ped.IdCliente">@cliente.Nome</option>
+                        }
+                </td>
+                <td>
+                    @if(ped.Tipo == 0)
+                        {
+                        <option value="@ped.Tipo">Balcão</option>
+                        }
+                    @if(ped.Tipo == 1)
+                        {
+                        <option value="@ped.Tipo">Delivery</option>
+                        }
+                </td>
+
+            </tr>
+            }  
+        }
+        
+        catch(Exception ex) 
+        {
+            Console.WriteLine(ex.Message);              
+        }
+
+    </tbody>
 
 </table>
+
+<a href="/Pedido/Create" class="btn btn-secondary" style="margin-top: 20px">Novo Pedido</a>

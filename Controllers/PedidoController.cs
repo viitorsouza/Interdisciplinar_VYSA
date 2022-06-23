@@ -25,6 +25,8 @@ namespace VYSA.Controllers
         public ActionResult Index()
         {
             ViewBag.Categorias = categoriaRepository.Read();
+            ViewBag.Clientes = clienteRepository.Read();
+            ViewBag.Funcionarios = funcionarioRepository.Read();
             List<Pedido> pedidos = repository.Read();
             return View(pedidos);
         }

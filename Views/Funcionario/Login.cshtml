@@ -11,34 +11,49 @@
 </head>
 
 <body>
+
     <div class="container">
-        <h1>Login</h1>
 
-        @if(ViewBag.Message != null)
-        {
-            <div class="alert alert-danger">@ViewBag.Message</div>
-        }
-
-        <form asp-controller="Funcionario" asp-action="Login" method="POST">
+        <ul class="nav justify-content-center">
 
             <div>
-                <label>E-mail</label>
-                <input asp-for="Login" class="form-control" />
-                <span asp-validation-for="Login"></span>
-            </div>
+                <div class="card bg-light mb-3" style="max-width: 18rem; margin-top: 190px;">
 
-            <div>
-                <label>Senha</label>
-                <input asp-for="Senha" class="form-control" />
-                <span asp-validation-for="Senha"></span>
-            </div>
+                    <div class="card-header">
+                        <h1>Login - VYSA</h1>
+                    </div>
 
-            <div>
-                <button class="btn btn-secondary" style="margin-top: 20px">ENTRAR</button>
-            </div>
-            
-        </form>
+                    <div class="card-body">                    
 
+                        @if(ViewBag.Message != null)
+                        {
+                            <div class="alert alert-danger">@ViewBag.Message</div>
+                        }
+
+                        <form asp-controller="Funcionario" asp-action="Login" method="POST">
+
+                            <div>
+                                <label>E-mail</label>
+                                <input asp-for="Login" class="form-control" />
+                                <span asp-validation-for="Login"></span>
+                            </div>
+
+                            <div>
+                                <label>Senha</label>
+                                <input asp-for="Senha" class="form-control" />
+                                <span asp-validation-for="Senha"></span>
+                            </div>
+
+                            <div>
+                                <button class="btn btn-secondary" style="margin-top: 20px">ENTRAR</button>
+                            </div>
+                            
+                        </form>
+
+                    </div>
+                </div>
+            </div>
+        </ul>
     </div>
 </body>
 

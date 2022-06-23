@@ -15,6 +15,17 @@
         <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.15/jquery.mask.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+        <script>
+        $(document).ready(function(){
+        $("#myInput").on("keyup", function() {
+            var value = $(this).val().toLowerCase();
+            $("#myTable tr").filter(function() {
+            $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+            });
+        });
+        });
+        </script>
         
         <nav class="navbar navbar-expand-lg navbar-light " class="navbar fixed-top" style="background-color: #D3D3D3;">
             <div class="container">
@@ -29,33 +40,33 @@
                     <ul class="navbar-nav mr-auto">
                         
                         <li class="nav-item">
-                            <div class="nav-link"><font face="Arial" size="4">Olá, @Context.Session.GetString("Nome")</font><span class="sr-only">(current)</span></div>
+                            <div class="nav-link"><font face="Arial" size="3">Olá, @Context.Session.GetString("Nome")</font><span class="sr-only">(current)</span></div>
                         </li>
                         
                         <li class="nav-item">
-                            <a class="nav-link" href="/Home/Index" ><font face="Arial" size="4"> Home </font><span class="sr-only">(current)</span></a>
+                            <a class="nav-link" href="/Home/Index" ><font face="Arial" size="3"> Home </font><span class="sr-only">(current)</span></a>
                         </li>                        
                         <li class="nav-item">
-                            <a class="nav-link" href="/Pedido/Index"><font face="Arial" size="4">Pedidos</font><span class="sr-only">(current)</span></a>
+                            <a class="nav-link" href="/Pedido/Index"><font face="Arial" size="3">Pedidos</font><span class="sr-only">(current)</span></a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="/Funcionario/Index"><font face="Arial" size="4">Funcionários</font> <span class="sr-only">(current)</span></a>
+                            <a class="nav-link" href="/Funcionario/Index"><font face="Arial" size="3">Funcionários</font> <span class="sr-only">(current)</span></a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="/Cliente/Index"><font face="Arial" size="4">Clientes</font> <span class="sr-only">(current)</span></a>
+                            <a class="nav-link" href="/Cliente/Index"><font face="Arial" size="3">Clientes</font> <span class="sr-only">(current)</span></a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="/Fornecedor/Index"><font face="Arial" size="4">Fornecedores</font> <span class="sr-only">(current)</span></a>
+                            <a class="nav-link" href="/Fornecedor/Index"><font face="Arial" size="3">Fornecedores</font> <span class="sr-only">(current)</span></a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="/Categoria/Index"><font face="Arial" size="4">Categorias</font> <span class="sr-only">(current)</span></a>
+                            <a class="nav-link" href="/Categoria/Index"><font face="Arial" size="3">Categorias</font> <span class="sr-only">(current)</span></a>
                         </li>
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <font face="Arial" size="4">Produtos</font>
+                                <font face="Arial" size="3">Produtos</font>
                             </a>
                             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                <font face="Arial" size="4">
+                                <font face="Arial" size="3">
                                     <a class="dropdown-item" href="/Produto/Index">Todos os Produtos</a>
                                     <div class="dropdown-divider"></div>
                                     @try
@@ -75,10 +86,10 @@
                         </li>                 
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <font face="Arial" size="4">Cadastrar</font>
+                                <font face="Arial" size="3">Cadastrar</font>
                             </a>
                             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                <font face="Arial" size="4">
+                                <font face="Arial" size="3">
                                 <a class="dropdown-item" href="/Funcionario/Create">Funcionário</a>
                                 <a class="dropdown-item" href="/Cliente/Create">Cliente</a>
                                 <a class="dropdown-item" href="/Fornecedor/Create">Fornecedor</a>
@@ -87,6 +98,12 @@
                                 <a class="dropdown-item" href="/Categoria/Create">Categoria</a>
                                 </font>
                             </div>
+                        </li>
+                        <li>
+                            <input class="form-control mr-sm-2" id="myInput" type="search" placeholder="Search" aria-label="Search">
+                        </li>
+                        <li class="nav-item">
+                            <a class="btn btn-outline-dark" style="margin-left: 20px" href="/Funcionario/Login" role="button">Sair</a>
                         </li>            
                     </ul>
                 </div>

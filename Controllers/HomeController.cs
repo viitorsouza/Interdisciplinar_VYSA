@@ -30,6 +30,7 @@ namespace VYSA.Controllers
             
             Console.WriteLine("Login");
 
+            ViewBag.Pedidos = pedidoRepository.Read();
             List<Produto> produtos = repository.ReadByEstoque();
             return View("Index", produtos);
 

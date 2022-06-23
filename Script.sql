@@ -211,32 +211,9 @@ FROM Fornecedores
 JOIN Pessoas ON Fornecedores.pessoa_id = Pessoas.IdPessoa
 GO
 
-
-
-select * from vFuncionarios
-select * from vFornecedores
-select * from vClientes
-
-delete from Categorias where IdCategoria = 2
-
-
-SELECT * FROM vFuncionarios WHERE Login = 'joao@email.com' and Senha = '123456'
-
-UPDATE Produtos
-SET estoque = estoque + 10
-WHERE IdProduto = 1
-go
-
---INSERT into ** values (GETDATE())
-
-select pessoa_id from vClientes WHERE cpf = '111.111.111-11'
-
-exec sp_add_funcionario 'Sidnei', '111.111.111-11', 'Rua Teste1, 256', 1, 1750.00, 'sidnei@vysa.com', '123456', 'sidnei@email.com', '(17)99999-9999'
-exec sp_update_funcionario 'Sidnei', '111.111.111-11', 'Rua Teste2, 256', 1, 2750.00, 'sidnei@vysa.com', '@123456', 'sidnei@email.com', '(17)99999-8888', 8
-
-exec sp_add_cliente 'Yuri', '222.222.222-22', 'Rua Teste3, 1234', 1, 'yuri@email.com', '(17)88888-9999', 20
-exec sp_update_cliente  'Yuri', '222.222.222-22', 'Rua Teste3, 4321', 1, 'yuri@email.com', '(17)88888-5555', 23, 9
-
-exec sp_add_fornecedor 'Vitor', '333.333.333-33', 'Rua Teste4, 2441', 1, 'Ambev', 'vitor@email.com', '(17)66666-9999'
-exec sp_update_fornecedor 'Vitor', '333.333.333-33', 'Rua Teste4, 441', 1, 'FEMSA', 'viitor@email.com', '(17)66666-9889', 10
-
+CREATE VIEW vPedidos
+AS
+SELECT Pedidos.*, Pessoas.*
+FROM Pedidos
+INNER JOIN Pessoas ON Pessoas.IdPessoa = Pedidos.cliente_id
+GO
